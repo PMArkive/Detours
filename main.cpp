@@ -451,17 +451,29 @@ TEST_SUITE("Detours::Scan") {
 		unsigned char pLeakTestEmptyArray[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDE, 0xED, 0xBE, 0xEF };
 
 		CHECK(Detours::Scan::FindSignatureNative(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, "\xDE\xED\x2A\xEF") == nullptr);
+		CHECK(Detours::Scan::FindSignatureNative(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, "\xDE\xED\x2A\xEF") == nullptr);
+		CHECK(Detours::Scan::FindSignatureNative(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 2, "\xDE\xED\x2A\xEF") == nullptr);
+		CHECK(Detours::Scan::FindSignatureNative(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 1, "\xDE\xED\x2A\xEF") == nullptr);
 
 		if (bHaveSSE2) {
 			CHECK(Detours::Scan::FindSignatureSSE2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureSSE2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureSSE2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 2, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureSSE2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 1, "\xDE\xED\x2A\xEF") == nullptr);
 		}
 
 		if (bHaveAVX2) {
 			CHECK(Detours::Scan::FindSignatureAVX2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureAVX2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureAVX2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 2, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureAVX2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 1, "\xDE\xED\x2A\xEF") == nullptr);
 		}
 
 		if (bHaveAVX512) {
 			CHECK(Detours::Scan::FindSignatureAVX512(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureAVX512(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureAVX512(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 2, "\xDE\xED\x2A\xEF") == nullptr);
+			CHECK(Detours::Scan::FindSignatureAVX512(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 1, "\xDE\xED\x2A\xEF") == nullptr);
 		}
 
 		unsigned char pAlignEmptyArray[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
@@ -770,17 +782,21 @@ TEST_SUITE("Detours::Scan") {
 		unsigned char pLeakTestEmptyArray[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xDE, 0xED, 0xBE, 0xEF };
 
 		CHECK(Detours::Scan::FindDataNative(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
+		CHECK(Detours::Scan::FindDataNative(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
 
 		if (bHaveSSE2) {
 			CHECK(Detours::Scan::FindDataSSE2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
+			CHECK(Detours::Scan::FindDataSSE2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
 		}
 
 		if (bHaveAVX2) {
 			CHECK(Detours::Scan::FindDataAVX2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
+			CHECK(Detours::Scan::FindDataAVX2(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
 		}
 
 		if (bHaveAVX512) {
 			CHECK(Detours::Scan::FindDataAVX512(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 4, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
+			CHECK(Detours::Scan::FindDataAVX512(pLeakTestEmptyArray, sizeof(pLeakTestEmptyArray) - 3, reinterpret_cast<unsigned char const*>("\xDE\xED"), 2) == nullptr);
 		}
 
 		unsigned char pAlignEmptyArray[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
